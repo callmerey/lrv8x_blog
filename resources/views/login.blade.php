@@ -43,31 +43,39 @@
                                     </div>
                                     <form class="user" action="{{route('auth/check')}}" method="POST">
 
-                                    @if (Session::get('fail'))
+                                        @if (Session::get('fail'))
                                         <div class="alert alert-danger">
-                                            {{Session::get('fail')}}
+                                            {{__('messages.fail')}}
                                         </div>
-                                    @endif
+                                        @endif
+
+                                        @if (Session::get('success'))
+                                        <div class="alert alert-success">
+                                            {{__('messages.register_success')}}
+                                        </div>
+                                        @endif
 
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email" value="{{old('email')}}">
-                                                <span class="text-danger"> 
-                                                    @error('email')
-                                                    {{$message}} 
-                                                    @enderror 
-                                                </span>    
+                                                placeholder="Enter Email Address..." name="email"
+                                                value="{{old('email')}}">
+                                            <span class="text-danger">
+                                                @error('email')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" name="password"  value="{{old('password')}}">
-                                                <span class="text-danger"> 
-                                                    @error('password')
-                                                    {{$message}} 
-                                                    @enderror 
-                                                </span> 
+                                                id="exampleInputPassword" placeholder="Password" name="password"
+                                                value="{{old('password')}}">
+                                            <span class="text-danger">
+                                                @error('password')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

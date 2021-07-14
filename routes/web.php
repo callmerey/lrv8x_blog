@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\MainController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,27 +19,27 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::post('auth/save', [MainController::class, 'save_login'])->name('auth/save');
+Route::post('auth/save', [RegisterController::class, 'save_login'])->name('auth/save');
 
-Route::post('auth/check', [MainController::class, 'check'])->name('auth/check');
+Route::post('auth/check', [LoginController::class, 'check'])->name('auth/check');
 
-Route::get('/logout', [MainController::class, 'logout'])->name('auth/logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('auth/logout');
 
 Route::get('/index', [PostController::class, 'get_post'])->name('index');
 
-Route::get('/login', [MainController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/user-post/{id}', [UserController::class, 'userPost']);
 
 Route::group(['middleware' => ['AuthCheck']], function () {
 
-    Route::get('/dashboard', [MainController::class, 'dashboard'])->name('auth/dashboard');
-    Route::get('/register', [MainController::class, 'register'])->name('register');
+    Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('auth/dashboard');
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
-    Route::get('/dashboard/settings', [MainController::class, 'setting']);
-    Route::get('/dashboard/profile', [MainController::class, 'profile']);
+    Route::get('/dashboard/settings', [LoginController::class, 'setting']);
+    Route::get('/dashboard/profile', [LoginController::class, 'profile']);
 
     Route::get('/post', [PostController::class, 'post'])->name('post');
 
