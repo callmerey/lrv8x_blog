@@ -27,7 +27,7 @@ class RegisterController extends Controller
         $user = new User();
         $user ->name = $request->name;
         $user ->image_user = 'Capture.png';
-        $user->image_background = '1625747891-post_image.jpg';
+        $user->image_background = '1625747997-post_image.webp';
         $user ->email = $request->email;
         $user ->password = Hash::make($request->password);
 

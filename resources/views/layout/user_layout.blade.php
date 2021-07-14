@@ -42,7 +42,7 @@
                 <div class="z-40 col-span-12 md:col-span-9 lg:col-span-10 xl:col-span-8">
                     <div class="w-full max-w-full ">
                         <div class="bg-white bg-center bg-cover border-l border-r profile-cover dark:border-brand-grey-800 dark:bg-brand-grey-900"
-                            style="background-image: url(&quot;https://cdn.hashnode.com/res/hashnode/image/upload/v1584035951809/rA6njTVVd.jpeg?w=1600&amp;fit=crop&amp;crop=entropy&amp;auto=compress&amp;auto=compress&quot;);">
+                            style="background-image: url({{url('public/uploads/')}}/{{$post->image_background}});">
                         </div>
                         <div
                             class="px-4 pt-4 mb-4 bg-white border-b rounded-bl-lg rounded-br-lg lg:px-16 dark:bg-brand-dark-grey-900 lg:border-l lg:border-r dark:border-brand-grey-800">
@@ -51,7 +51,7 @@
                                     class="flex-shrink-0 w-24 h-24 mb-4 bg-white border-4 border-white rounded-full shadow-lg md:mb-0 md:-mt-40 lg:mb-0 lg:w-40 lg:h-40 md:mr-8 dark:bg-brand-grey-800 dark:border-brand-grey-800 xl:ml-48">
                                     <a class="block w-full h-auto relative undefined" data-title="false"><img
                                             data-sizes="auto" loading="lazy"
-                                            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1623860071558/mDXtpyO32.png?w=400&amp;h=400&amp;fit=crop&amp;crop=faces&amp;auto=compress"
+                                            src="{{url('public/uploads/')}}/{{$post->image_user}}"
                                             data-src="https://cdn.hashnode.com/res/hashnode/image/upload/v1623860071558/mDXtpyO32.png?w=400&amp;h=400&amp;fit=crop&amp;crop=faces&amp;auto=compress"
                                             data-width="400" data-height="400" alt="Thanh Son's photo"
                                             class="block w-full undefined block w-full rounded-full z-20 relative lazyautosizes lazyloaded"
@@ -87,21 +87,9 @@
                             </div>
                         </div>
                     </div>
-
-                    @yield('profile')
-
+                        @yield('profile')
                 </div>
             </div>
         </div>
 </body>
-<script>
-    var loadFile = function(event) {
-        var image = document.getElementById('output');
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-    var loadFile_avt = function(event) {
-        var image = document.getElementById('block');
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
 </html>
