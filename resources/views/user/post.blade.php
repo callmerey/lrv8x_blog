@@ -194,7 +194,7 @@
 
                     lfm({
                         type: 'image',
-                        prefix: '/lrv8_blog/laravel-filemanager'
+                        prefix: '/lrv8x_blog/laravel-filemanager'
                     }, function(lfmItems, path) {
                         lfmItems.forEach(function(lfmItem) {
                             context.invoke('insertImage', lfmItem.url);
