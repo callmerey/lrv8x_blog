@@ -7,7 +7,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,3 +48,8 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     Route::post('/post/save', [PostController::class, 'save_post'])->name('post/save');
 });
+
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware'], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+
