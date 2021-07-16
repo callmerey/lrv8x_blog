@@ -34,7 +34,15 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/post', [PostController::class, 'post'])->name('post');
 
     Route::get('/edit-profile/{user}', [UserController::class, 'editProfile'])->name('edit-profile');
+
+    Route::get('/edit-post/{post}', [PostController::class, 'editPost'])->name('edit-post');
+
+    Route::get('/delete/{post}', [PostController::class, 'deletePost'])->name('delete-post');
+
     Route::post('/save-user/{user}', [UserController::class, 'updateProfile'])->name('/save-user');
+
+    Route::post('/save-post/{post}', [PostController::class, 'updatePost'])->name('save-post');
+
     Route::post('/post/save', [PostController::class, 'save_post'])->name('post/save');
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware'], function () {
