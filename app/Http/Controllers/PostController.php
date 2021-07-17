@@ -8,6 +8,7 @@ use App\Models\post;
 use Mockery\Expectation;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -103,9 +104,42 @@ class PostController extends Controller
 
     function deletePost(Post $post)
     {   
-        
         $post->delete();
 
         return redirect()->route('profile');
+    }
+
+    function getBlog(Post $post)
+    {   
+
+        $data = Post::join('users', 'users.id', '=', 'posts.user_id')
+            ->join('categories', 'categories.cate_id', '=', 'posts.cate_id')
+            ->select('users.id', 
+                    'users.name', 
+                    'posts.name_post', 
+                    'posts.title_post', 
+                    'posts.created_at', 
+                    'categories.cate_name', 
+                    'posts.image_post', 
+                    'posts.desc',
+                    'posts.post_id')
+            ->get();
+
+
+        $comment_data = Comment::join('users', 'users.id', '=', 'comments.user_id')
+                                ->join('posts', 'posts.post_id', '=','comments.post_id')
+                                ->select('users.name',
+                                        'users.image_user',
+                                        'comments.created_at',
+                                        'comments.desc')
+                                ->where('posts.post_id','=',$post->post_id)
+                                ->orWhereNull('posts.post_id')
+                                ->get();
+
+        $items = Category::get();
+
+        $count_comment = Comment::where('post_id','=',$post->post_id)->count();
+
+        return view('user.blog-detail',compact('post','data','items','comment_data','count_comment'));  
     }
 }
