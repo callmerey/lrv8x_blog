@@ -31,11 +31,17 @@ class LoginController extends Controller
         if (!$userInfo) {
             return back()->with('fail',' ');
         } else {
-
             //check password
             if (Hash::check($request->password, $userInfo->password)) {
                 $request->session()->put('LoggedUser', $userInfo->id);
-                return redirect('/index');
+
+                //
+                if($userInfo->role == 'admin'){
+                    return redirect('admin/dashboard');
+                }else{
+                    return redirect('/index');
+                }
+
             } else {
                 return back()->with('fail',' ');
             }
@@ -51,9 +57,4 @@ class LoginController extends Controller
         }
     }
 
-    function dashboard()
-    {
-        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        return view('admin/dashboard', $data);
-    }
 }

@@ -82,4 +82,11 @@ class UserController extends Controller
 
         return redirect()->route('edit-profile',[$user]);
     }
+
+    function getUserAdmin(){
+
+        $data = User::get();
+
+        return view('admin/user',compact('data'));
+    }
 }

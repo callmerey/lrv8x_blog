@@ -26,6 +26,7 @@ class RegisterController extends Controller
         //set request to model user
         $user = new User();
         $user ->name = $request->name;
+        $user->role = 'user';
         $user ->image_user = 'Capture.png';
         $user->image_background = '1625747997-post_image.webp';
         $user ->email = $request->email;

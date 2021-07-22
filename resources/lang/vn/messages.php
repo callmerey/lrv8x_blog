@@ -4,6 +4,7 @@
         'fail' => 'Đã sảy ra lỗi với mật khẩu',
         'register_success'=>'Đăng kí thành công',
         'msg'=>'Cập nhật thành công',
-       ' user_login'=> 'Vui lòng đăng nhập',
+        'user_login'=> 'Vui lòng đăng nhập',
+        'cate_success'=> 'Thêm Mới thành công danh mục',
     ]
 ?> 

@@ -11130,7 +11130,7 @@ a:focus {
 .btn-icon-split .icon {
     background: rgba(0, 0, 0, .15);
     display: inline-block;
-    padding: .375rem .75rem
+    padding: 10px 10px;
 }
 
 .btn-icon-split .text {

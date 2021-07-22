@@ -142,4 +142,21 @@ class PostController extends Controller
 
         return view('user.blog-detail',compact('post','data','items','comment_data','count_comment'));  
     }
+
+    function getPostAdmin(){
+        $data = Post::join('users', 'users.id', '=', 'posts.user_id')
+            ->join('categories', 'categories.cate_id', '=', 'posts.cate_id')
+            ->select('users.id', 
+                    'users.name', 
+                    'posts.name_post', 
+                    'posts.title_post', 
+                    'posts.created_at', 
+                    'categories.cate_name', 
+                    'posts.image_post', 
+                    'posts.desc',
+                    'posts.post_id')
+            ->get();
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+        return view('admin/post',compact('data','user'));
+    }
 }
