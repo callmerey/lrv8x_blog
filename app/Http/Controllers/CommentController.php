@@ -2,34 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    function saveComment(Request $request){
+    function saveComment(CommentRequest $request){
 
 
-        $request->validate([
-            'comment' => 'required',
-        ]);
+        $comment_validation = $request ->all();
 
         $id = $request->post_id;
          //find id user
-         $data = User::where('id', '=', session('LoggedUser'))->first();
-         $id_user = $data['id'];
+         $user = User::where('id', '=', session('LoggedUser'))->first();
         
-         if($id_user == null){
+         if($user['id'] == null){
             return back()->with('user_login',' ');
          }
-
          $comment = new Comment();
-         $comment->desc = $request->comment;
+         $comment->desc = $comment_validation['comment'];
          $comment->post_id = $id;
-         $comment->user_id =$id_user;
+         $comment->user_id =$user['id'];
 
-         $comment->save();
-         return redirect()->route('blog-detail',[$id]);
+         if($comment == null){
+            return back()->with('fail',' ');
+         }else{
+            $comment->save();
+            return redirect()->route('blog-detail',[$id]);
+         }
+        
     }
 }

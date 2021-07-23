@@ -6,5 +6,6 @@
         'msg'=>'Cập nhật thành công',
         'user_login'=> 'Vui lòng đăng nhập',
         'cate_success'=> 'Thêm Mới thành công danh mục',
+        'profile' => 'Hồ Sơ'
     ]
 ?> 

@@ -12,9 +12,9 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 
 
-Route::post('auth/save', [RegisterController::class, 'save_login'])->name('auth/save');
+Route::post('auth/save', [RegisterController::class, 'saveUserRegister'])->name('auth/save');
 
-Route::post('auth/check', [LoginController::class, 'check'])->name('auth/check');
+Route::post('auth/check', [LoginController::class, 'checkLogin'])->name('auth/check');
 
 Route::get('/blog-detail/{post}', [PostController::class, 'getBlog'])->name('blog-detail');
 
@@ -25,7 +25,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/user-post/{id}', [UserController::class, 'userPost']);
 
 Route::group(['middleware' => ['AuthCheck']], function () {
-
+    
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -38,18 +38,6 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     Route::get('/admin/cate/add', [CategoryController::class, 'addCate'])->name('admin-add-cate');
 
-    Route::post('/admin/cate/save', [CategoryController::class, 'saveCate'])->name('admin-cate-save');
-
-    Route::get('/admin/cate/{cate}', [CategoryController::class, 'editCate'])->name('admin-cate-edit');
-
-    Route::post('/admin/update/{cate}', [CategoryController::class, 'updateCate'])->name('admin-cate-update');
-
-    Route::get('/register', [RegisterController::class, 'register'])->name('register');
-
-    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-
-    Route::Post('/save-comment', [CommentController::class, 'saveComment'])->name('save-comment');
-
     Route::get('/dashboard/profile', [LoginController::class, 'profile']);
 
     Route::get('/post', [PostController::class, 'post'])->name('post');
@@ -60,11 +48,23 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     Route::get('/delete/{post}', [PostController::class, 'deletePost'])->name('delete-post');
 
+    Route::get('/admin/cate/{cate}', [CategoryController::class, 'editCate'])->name('admin-cate-edit');
+
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
+
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+
+    Route::post('/admin/update/{cate}', [CategoryController::class, 'updateCate'])->name('admin-cate-update');
+
+    Route::post('/save-comment', [CommentController::class, 'saveComment'])->name('save-comment');
+
     Route::post('/save-user/{user}', [UserController::class, 'updateProfile'])->name('/save-user');
 
     Route::post('/save-post/{post}', [PostController::class, 'updatePost'])->name('save-post');
 
     Route::post('/post/save', [PostController::class, 'save_post'])->name('post/save');
+    
+    Route::post('/admin/cate/save', [CategoryController::class, 'saveCate'])->name('admin-cate-save');
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

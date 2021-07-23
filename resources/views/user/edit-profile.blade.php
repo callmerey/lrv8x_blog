@@ -3,34 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" id="style-ref"
-        href="https://hashnode.com/static/css/app.min.css?v=1625504643155">
-        <style>
-            input[type=file] {
-                cursor: pointer;
-                width: 180px;
-                height: 34px;
-                overflow: hidden;
-            }
-    
-            input[type=file]:before {
-                width: 158px;
-                height: 32px;
-                font-size: 16px;
-                line-height: 32px;
-                content: 'Chọn Ảnh';
-                display: inline-block;
-                background: white;
-                border: 1px solid #000;
-                padding: 0 10px;
-                text-align: center;
-                font-family: Helvetica, Arial, sans-serif;
-            }
-    
-            input[type=file]::-webkit-file-upload-button {
-                visibility: hidden;
-            }
-        </style>
+        <link href="{{url('public/site')}}/css/profile.css" rel="stylesheet">
+        <link href="{{url('public/site')}}/css/style1.css" rel="stylesheet">
 </head>
 
 <body class="leading-normal bg-bluish-gray dark:bg-brand-dark-grey-900">
@@ -165,14 +139,5 @@
             </div>
         </div>
 </body>
-<script>
-    var loadFile = function(event) {
-        var image = document.getElementById('output');
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-    var loadFile_avt = function(event) {
-        var image = document.getElementById('block');
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
+<script src="{{url('public/site')}}/js/user.js"></script>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,28 +15,26 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    function save_login(Request $request){
+    function saveUserRegister(RegisterRequest $request){
 
-        //validation request
-        $request ->  validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|max:12|confirmed',
-        ]);
-
+        $user_validation = $request ->all();
+        
         //set request to model user
         $user = new User();
-        $user ->name = $request->name;
+        $user ->name = $user_validation['name'];
         $user->role = 'user';
         $user ->image_user = 'Capture.png';
         $user->image_background = '1625747997-post_image.webp';
-        $user ->email = $request->email;
-        $user ->password = Hash::make($request->password);
+        $user ->email = $user_validation['email'];
+        $user ->password = Hash::make($user_validation['password']);
 
         // save model
-        $user->save();
-
-        return redirect('login')->with('success',' ');
+        if($user == null){
+            return back()->with('fail',' ');
+        }else{
+            $user->save();
+        }
+        return redirect('login')->with('success',__('messages.register_success'));
 
     }
 }
