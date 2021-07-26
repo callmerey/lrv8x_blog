@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    function profile(){
+    public function index(){
 
         $user = User::where('id', '=', session('LoggedUser'))->first();
 
@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     //get user post
-    function userPost($id){
+    public function show($id){
 
         $user = User::where('id', '=', $id)->first();
         $data = Post::GetBlogWithUser($id)->get();
@@ -28,12 +28,12 @@ class UserController extends Controller
     }
 
     // edit profile
-    function editProfile(User $user){
+    public function edit(User $user){
         return view('user/edit-profile',compact('user'));
     }
 
     // update data request
-    function updateProfile(Request $request, User $user){
+    public function update(Request $request, User $user){
 
         if ($request->has('image_user')) {
             $file = $request->image_user;
@@ -65,7 +65,7 @@ class UserController extends Controller
 
         }else{
             $userUpdate->save();
-            return redirect()->route('edit-profile',[$user])->with('msg',__('messages.msg'));
+            return redirect()->route('user.edit',[$user])->with('msg',__('messages.msg'));
         }
     }
 

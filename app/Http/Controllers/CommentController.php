@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    function saveComment(CommentRequest $request){
-
+      public function store(CommentRequest $request){
 
         $comment_validation = $request ->all();
 

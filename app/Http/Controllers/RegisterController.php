@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     // Return View Register template
-    function register()
+    public function index()
     {
         return view('register');
     }
 
-    function saveUserRegister(RegisterRequest $request){
+    public function store(RegisterRequest $request){
 
         $user_validation = $request ->all();
         

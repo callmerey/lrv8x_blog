@@ -10,7 +10,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary" style="float: left;">DataTables</h6>
-            <a style="float: right" href="{{URL::to('admin/cate/add')}}" class="btn btn-primary btn-icon-split">
+            <a style="float: right" href="{{URL::to('category/create')}}" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
@@ -33,7 +33,7 @@
                             <td>{{$cate->cate_id}}</td>
                             <td>{{$cate->cate_name}}</td>
                             <td style="width: 214px;">
-                                <a style="float: left" href="{{URL::to('/admin/cate/'.$cate->cate_id)}}" class="btn btn-info btn-icon-split">
+                                <a style="float: left" href="{{URL::to('category/'.$cate->cate_id.'/edit')}}" class="btn btn-info btn-icon-split">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-info-circle"></i>
                                     </span>

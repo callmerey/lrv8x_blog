@@ -6,7 +6,8 @@
             <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Thêm Mới Danh Mục!</h1>
             </div>
-            <form class="user" action="{{ url('/admin/update/'. $cate->cate_id)}}" method="POST">
+            <form class="user" action="{{url('category/'. $category->cate_id)}}" method="POST">
+                @method('PUT')
                 @csrf
                 @if (Session::get('fail'))
                 <div class="alert alert-danger">
@@ -19,8 +20,8 @@
                 </div>
                 @endif
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" value="{{$cate->cate_name}}" name="cate_name" id="exampleInputEmail" placeholder="Nhập Danh Mục">
-                    <input type="hidden" value="{{$cate->cate_id}}">
+                    <input type="text" class="form-control form-control-user" value="{{$category->cate_name}}" name="cate_name" id="exampleInputEmail" placeholder="Nhập Danh Mục">
+                    <input type="hidden" value="{{$category->cate_id}}">
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                     Cập Nhật

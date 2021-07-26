@@ -95,7 +95,7 @@
                         <h6 class="collapse-header">Thao Tác:</h6>
                         <a class="collapse-item" href="{{URL::to('admin/user')}}">Danh Sách Người Dùng</a>
                         <a class="collapse-item" href="{{URL::to('admin/post')}}">Danh Sách Bài Viết</a>
-                        <a class="collapse-item" href="{{URL::to('admin/cate')}}">Danh Sách Danh Mục</a>
+                        <a class="collapse-item" href="{{URL::to('category')}}">Danh Sách Danh Mục</a>
                     </div>
                 </div>
             </li>

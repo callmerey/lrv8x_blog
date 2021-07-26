@@ -101,7 +101,7 @@
                             <h2>Đánh giá bài viết</h2>
                             {{-- <p>your email address will not be published. required fields are marked *</p> --}}
                         </div>
-                        <form class="post-reply" action="{{route('save-comment')}}" method="POST">
+                        <form class="post-reply" action="{{route('comment.store')}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">

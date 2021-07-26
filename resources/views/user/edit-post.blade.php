@@ -80,9 +80,10 @@
                                             <div class="text-center">
                                                 <h1 class="h4 text-gray-900 mb-4">Viết Bài!</h1>
                                             </div>
-                                            <form class="user" action="{{ url('save-post/' . $post->post_id) }}"
+                                            <form class="user" action="{{ url('post/'. $post->post_id) }}"
                                                 method="POST" enctype="multipart/form-data">
-
+                                                @csrf
+                                                @method('PUT')
                                                 @if (Session::get('fail'))
                                                     <div class="alert alert-danger">
                                                         {{ Session::get('fail') }}
@@ -94,7 +95,7 @@
                                                         {{ __('messages.msg') }}
                                                     </div>
                                                 @endif
-                                                @csrf
+                                                
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-user"
                                                         id="exampleInputEmail" aria-describedby="emailHelp"
@@ -164,5 +165,64 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ url('public/site') }}/js/sb-admin-2.min.js"></script>
-<script src="{{ url('public/site') }}/js/summernote.js"></script>
+{{-- <script src="{{ url('public/site') }}/js/summernote.js"></script> --}}
+<script>
+    $(document).ready(function() {
+
+// Define function to open filemanager window
+var lfm = function(options, cb) {
+    var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
+    window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager',
+        'width=900,height=600');
+    window.SetUrl = cb;
+};
+
+// Define LFM summernote button
+var LFMButton = function(context) {
+    var ui = $.summernote.ui;
+    var button = ui.button({
+        contents: '<i class="note-icon-picture"></i> ',
+        tooltip: 'Insert image with filemanager',
+        click: function() {
+
+            lfm({
+                type: 'image',
+                prefix: '/lrv8x_blog/laravel-filemanager'
+            }, function(lfmItems, path) {
+                lfmItems.forEach(function(lfmItem) {
+                    context.invoke('insertImage', lfmItem.url);
+                });
+            });
+
+        }
+    });
+    return button.render();
+};
+
+// Initialize summernote with LFM button in the popover button group
+// Please note that you can add this button to any other button group you'd like
+$('#summernote').summernote({
+    toolbar: [
+        ['popovers', ['lfm']],
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['link'],
+        ['codeview'],
+    ],
+
+    buttons: {
+        lfm: LFMButton
+    },
+    height: 300,
+    placeholder: "Chi tiết bài viết của bạn",
+    minHeight: null,
+    maxHeight: null,
+    focus: true
+}).summernote('code', `{!! $post->title_post !!}`)
+});
+</script>
 </html>

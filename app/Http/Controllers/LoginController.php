@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
 
-    function login()
+    public function index()
     {
         return view('login');
     }
@@ -32,7 +32,7 @@ class LoginController extends Controller
                 $request->session()->put('LoggedUser', $userInfo->id);
 
                 if($userInfo->role == 'admin'){
-                    return redirect('admin/dashboard');
+                    return redirect('admin');
                 }else{
                     return redirect('/index');
                 }

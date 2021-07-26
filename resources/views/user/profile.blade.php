@@ -40,13 +40,13 @@
             <div class="flex flex-row">
                 <div class="w-1/3 p-2">
                     <h3 class="mb-px font-medium text-brand-grey-700 dark:text-brand-grey-500">
-                        Followers</h3><a href="/@Thanhson/followers" title="0"
+                        Followers</h3><a href="#" title="0"
                         class="text-2xl font-bold text-brand-grey-800 dark:text-brand-grey-200">0</a>
                 </div>
                 <div class="w-1/3 p-2">
                     <h3 class="mb-px font-medium text-brand-grey-700 dark:text-brand-grey-500">
                         Following</h3>
-                    <p class="big-num"><a href="/@Thanhson/following" title="0"
+                    <p class="big-num"><a href="#" title="0"
                             class="text-2xl font-bold text-brand-grey-800 dark:text-brand-grey-200">0</a>
                     </p>
                 </div>
@@ -74,7 +74,7 @@
             <h2 class="mb-4 text-xl font-medium text-brand-grey-700 dark:text-brand-grey-400">Recent
                 Activity</h2>
             <div class="widget-body recent-activity-body">
-                <div class="flex flex-row items-start mb-4"><a href="/@Thanhson"
+                <div class="flex flex-row items-start mb-4"><a href="#"
                         class="mt-2 mr-4 text-accent-blue-500"><svg class="w-5 h-5 fill-current"
                             viewBox="0 0 500 500">
                             <g transform="translate(0 20)" fill="none" fill-rule="evenodd">
@@ -111,7 +111,7 @@
                         </svg></a>
                     <div class="flex-1">
                         <p class="mb-1 text-base text-brand-grey-800">Joined Hashnode</p>
-                        <p class="text-sm text-brand-grey-600"><a href="/@Thanhson">June 16,
+                        <p class="text-sm text-brand-grey-600"><a href="#">June 16,
                                 2021</a></p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                     <div class="flex flex-row items-center flex-1 mb-5">
                         <div
                             class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-2 rounded-full bg-brand-grey-200 dark:bg-brand-grey-700">
-                            <a href="/@gsdev" target="_Blank" class="block relative w-full h-full "
+                            <a href="#" target="_Blank" class="block relative w-full h-full "
                                 data-title="false"><img data-sizes="auto" loading="lazy"
                                     src="{{url('public/uploads/')}}/{{$post->image_user}}"
                                     data-src="{{url('public/uploads/')}}/{{$post->image_user}}"
@@ -136,7 +136,7 @@
                         </div>
                         <div class="flex flex-col leading-snug">
                             <div class="flex flex-row flex-wrap items-center mb-px"><a
-                                    href="/@gsdev" target="_Blank"
+                                    href="#" target="_Blank"
                                     class="inline-block font-semibold text-brand-grey-800 dark:text-brand-grey-100">{{$post->name}}</a>
                             </div><a
                                 href="https://gsdev.hashnode.dev/10-vscode-extensions-ckqtio8bz0onhi2s1bw8e0wc7"
@@ -191,7 +191,7 @@
                             <div class="flex flex-row items-center">
                                 <div class="relative">
 
-                                    <a href="{{URL::to('edit-post/'.$post->post_id)}}" aria-label="Bookmark this post"
+                                    <a href="{{URL::to('post/'.$post->post_id.'/edit')}}" aria-label="Bookmark this post"
                                         data-title="Edit Post"
                                         class="bookmark-button flex flex-row items-center focus:outline-none p-2 rounded hover:bg-brand-grey-100 dark:hover:bg-brand-dark-grey-700 tooltip-handle  tooltip-left-aligned text-brand-grey-700 dark:text-brand-grey-300 ">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

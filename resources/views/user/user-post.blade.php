@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{$user->name}}</title>
-    <link rel="stylesheet" type="text/css" id="style-ref"
-        href="https://hashnode.com/static/css/app.min.css?v=1625504643155">
+    <link href="{{url('public/site')}}/css/profile.css" rel="stylesheet">
 </head>
 
 <body class="leading-normal bg-bluish-gray dark:bg-brand-dark-grey-900">
@@ -16,7 +15,7 @@
                 <div class="z-40 col-span-12 md:col-span-9 lg:col-span-10 xl:col-span-8">
                     <div class="w-full max-w-full ">
                         <div class="bg-white bg-center bg-cover border-l border-r profile-cover dark:border-brand-grey-800 dark:bg-brand-grey-900"
-                            style="background-image: url(&quot;https://cdn.hashnode.com/res/hashnode/image/upload/v1584035951809/rA6njTVVd.jpeg?w=1600&amp;fit=crop&amp;crop=entropy&amp;auto=compress&amp;auto=compress&quot;);">
+                            style="background-image: url({{url('public/uploads/')}}/{{$user->image_background}});">
                         </div>
                         <div
                             class="px-4 pt-4 mb-4 bg-white border-b rounded-bl-lg rounded-br-lg lg:px-16 dark:bg-brand-dark-grey-900 lg:border-l lg:border-r dark:border-brand-grey-800">
@@ -42,7 +41,7 @@
                                                     d="M493.255 56.236l-37.49-37.49c-24.993-24.993-65.515-24.994-90.51 0L12.838 371.162.151 485.346c-1.698 15.286 11.22 28.203 26.504 26.504l114.184-12.687 352.417-352.417c24.992-24.994 24.992-65.517-.001-90.51zm-95.196 140.45L174 420.745V386h-48v-48H91.255l224.059-224.059 82.745 82.745zM126.147 468.598l-58.995 6.555-30.305-30.305 6.555-58.995L63.255 366H98v48h48v34.745l-19.853 19.853zm344.48-344.48l-49.941 49.941-82.745-82.745 49.941-49.941c12.505-12.505 32.748-12.507 45.255 0l37.49 37.49c12.506 12.506 12.507 32.747 0 45.255z">
                                                 </path>
                                             </svg>
-                                            <span>__('messages.profile')</span>
+                                            <span>{{__('messages.profile')}}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -93,13 +92,13 @@
                                 <div class="flex flex-row">
                                     <div class="w-1/3 p-2">
                                         <h3 class="mb-px font-medium text-brand-grey-700 dark:text-brand-grey-500">
-                                            Followers</h3><a href="/@Thanhson/followers" title="0"
+                                            Followers</h3><a href="" title="0"
                                             class="text-2xl font-bold text-brand-grey-800 dark:text-brand-grey-200">0</a>
                                     </div>
                                     <div class="w-1/3 p-2">
                                         <h3 class="mb-px font-medium text-brand-grey-700 dark:text-brand-grey-500">
                                             Following</h3>
-                                        <p class="big-num"><a href="/@Thanhson/following" title="0"
+                                        <p class="big-num"><a href="" title="0"
                                                 class="text-2xl font-bold text-brand-grey-800 dark:text-brand-grey-200">0</a>
                                         </p>
                                     </div>
@@ -131,7 +130,7 @@
                                         <div class="flex flex-row items-center flex-1 mb-5">
                                             <div
                                                 class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-2 rounded-full bg-brand-grey-200 dark:bg-brand-grey-700">
-                                                <a href="/@gsdev" target="_Blank" class="block relative w-full h-full "
+                                                <a href="#" target="_Blank" class="block relative w-full h-full "
                                                     data-title="false"><img data-sizes="auto" loading="lazy"
                                                     src="{{url('public/uploads/')}}/{{$user->image_user}}"
                                                         data-src="{{url('public/uploads/')}}/{{$user->image_user}}"
@@ -144,7 +143,7 @@
                                                         href="" target="_Blank"
                                                         class="inline-block font-semibold text-brand-grey-800 dark:text-brand-grey-100">{{$post->name}}</a>
                                                 </div><a
-                                                    href="https://gsdev.hashnode.dev/10-vscode-extensions-ckqtio8bz0onhi2s1bw8e0wc7"
+                                                    href=""
                                                     target="_blank"
                                                     class="text-sm text-brand-grey-700 dark:text-brand-grey-500">{{$post->created_at}}</a>
                                             </div>
@@ -153,18 +152,18 @@
                                             <div class="flex-auto w-full pr-0 md:w-auto md:flex-1 md:pr-5">
                                                 <h1
                                                     class="mb-1 text-3xl font-semibold leading-tight tracking-tight text-brand-black dark:text-brand-grey-100">
-                                                    <a href="https://gsdev.hashnode.dev/10-vscode-extensions-ckqtio8bz0onhi2s1bw8e0wc7"
+                                                    <a href="{{URL::to('blog-detail/'.$post->post_id) }}"
                                                         target="_blank" class="block">{{$post->name_post}}</a>
                                                 </h1>
                                                 <p
                                                     class="max-w-full min-w-full mb-2 text-lg leading-snug tracking-tight break-words text-brand-grey-700 dark:text-brand-grey-400">
                                                     <a aria-label="Post brief"
-                                                        href="https://gsdev.hashnode.dev/10-vscode-extensions-ckqtio8bz0onhi2s1bw8e0wc7"
+                                                        href="{{URL::to('blog-detail/'.$post->post_id) }}"
                                                         target="_blank" class="block">{{$post->desc}}</a>
                                                 </p>
                                             </div>
                                             <div class="w-full h-auto md:w-72">
-                                                <a href="https://gsdev.hashnode.dev/10-vscode-extensions-ckqtio8bz0onhi2s1bw8e0wc7"
+                                                <a href="{{URL::to('blog-detail/'.$post->post_id) }}"
                                                     class="block w-full overflow-hidden bg-gray-100 bg-center bg-cover rounded post-cover dark:bg-brand-grey-800 dark:border-brand-grey-800"
                                                     target="_blank"
                                                     aria-label="Cover photo for the post titled: 10 VSCode Extensions"
@@ -174,7 +173,7 @@
                                         <div class="flex flex-row items-center justify-between pt-4">
                                             <div class="flex flex-row items-center justify-between w-full">
                                                 <div class="flex flex-row items-center">
-                                                    <a href="https://gsdev.hashnode.dev/10-vscode-extensions-ckqtio8bz0onhi2s1bw8e0wc7"
+                                                    <a href="{{URL::to('blog-detail/'.$post->post_id) }}"
                                                         target="_blank" aria-label="Total number of likes"
                                                         class="flex flex-row items-center mr-8 font-semibold text-brand-grey-700 dark:text-brand-grey-300"><svg
                                                             class="w-6 h-6 false fill-current" viewBox="0 0 512 512">
@@ -183,7 +182,7 @@
                                                             </path>
                                                         </svg><span></span></a>
                                                     <div class="flex flex-row items-center mr-4">
-                                                        <a href="https://gsdev.hashnode.dev/10-vscode-extensions-ckqtio8bz0onhi2s1bw8e0wc7#comments"
+                                                        <a href="abc#comments"
                                                             target="_blank" aria-label="Total number of comments"
                                                             class="flex flex-row items-center mr-1 font-medium text-brand-grey-700 dark:text-brand-grey-300"><svg
                                                                 class="fill-current mr-2 w-6 h-6" viewBox="0 0 512 512">

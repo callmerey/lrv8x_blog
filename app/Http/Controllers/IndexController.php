@@ -8,7 +8,7 @@ use App\Models\User;
 
 class IndexController extends Controller
 {
-    function get_post()
+    public function index()
     {
         // query builder select post
        
