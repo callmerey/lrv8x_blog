@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 
 
@@ -14,7 +15,7 @@ Route::post('auth/check', [LoginController::class, 'check'])->name('auth/check')
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('auth/logout');
 
-Route::get('/index', [PostController::class, 'get_post'])->name('index');
+Route::get('/index', [IndexController::class, 'get_post'])->name('index');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
@@ -35,4 +36,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/edit-profile/{user}', [UserController::class, 'editProfile'])->name('edit-profile');
     Route::post('/save-user/{user}', [UserController::class, 'updateProfile'])->name('/save-user');
     Route::post('/post/save', [PostController::class, 'save_post'])->name('post/save');
+});
+Route::group(['prefix' => 'laravel-filemanager', 'middleware'], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
