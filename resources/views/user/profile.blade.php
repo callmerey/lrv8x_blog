@@ -1,3 +1,5 @@
+@extends('layout.user_layout')
+
 @section('profile')
 
 <div class="flex flex-row items-start flex-grow-0 w-full max-w-full">
@@ -11,16 +13,16 @@
                             <path
                                 d="M52.7 24.5h-9.4v18.8H24.5v9.4h18.8v18.8h9.4V52.7h18.8v-9.4H52.7V24.5zM48 1C22.056 1 1 22.056 1 48s21.056 47 47 47 47-21.056 47-47S73.944 1 48 1zm0 84.6c-20.727 0-37.6-16.873-37.6-37.6S27.273 10.4 48 10.4 85.6 27.273 85.6 48 68.727 85.6 48 85.6z"
                                 fill-rule="nonzero"></path>
-                        </svg><span>Add Bio</span></a></div>
-                <p class="mb-2 text-sm italic leading-snug text-brand-grey-600">Looks like your bio
-                    is empty. Tell the world who you are by writing a short description about you.
+                        </svg><span>Thông tin thêm</span></a></div>
+                <p class="mb-2 text-sm italic leading-snug text-brand-grey-600">
+                    {{$desc}}
                 </p>
             </div>
-            <div class="mb-2"><span class="inline-block w-20 text-brand-grey-600">Joined:
-                </span><span class="font-medium text-brand-grey-800 dark:text-brand-grey-400">June
-                    16, 2021</span></div>
+            <div class="mb-2"><span class="inline-block w-20 text-brand-grey-600">Tham gia:
+                </span><span class="font-medium text-brand-grey-800 dark:text-brand-grey-400">{{$created_at->format('d-m-Y')}}</span></div>
             <div class="pt-5 mt-5 border-t dark:border-brand-grey-800">
-                <h2 class="mb-2 font-semibold text-brand-grey-700 dark:text-brand-grey-500">I am
+                <h2 class="mb-2 font-semibold text-brand-grey-700 dark:text-brand-grey-500">
+                    I am
                     available for</h2>
                 <div class="">
                     <div class="flex flex-row items-center"><a href="/settings#availableFor"
@@ -126,8 +128,8 @@
                             class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-2 rounded-full bg-brand-grey-200 dark:bg-brand-grey-700">
                             <a href="/@gsdev" target="_Blank" class="block relative w-full h-full "
                                 data-title="false"><img data-sizes="auto" loading="lazy"
-                                    src="https://cdn.hashnode.com/res/hashnode/image/upload/v1620419181276/oA1ZQbUUo.png?w=500&amp;h=500&amp;fit=crop&amp;crop=entropy&amp;auto=compress"
-                                    data-src="https://cdn.hashnode.com/res/hashnode/image/upload/v1620419181276/oA1ZQbUUo.png?w=500&amp;h=500&amp;fit=crop&amp;crop=entropy&amp;auto=compress"
+                                    src="{{url('public/uploads/')}}/{{$post->image_user}}"
+                                    data-src="{{url('public/uploads/')}}/{{$post->image_user}}"
                                     data-width="500" data-height="500" alt="Gaurang's photo"
                                     class="block w-full relative z-20 block overflow-hidden rounded-full lazyautosizes lazyloaded"
                                     sizes="40px"></a>
@@ -186,16 +188,21 @@
                                         </svg><span>Comment</span></a>
                                 </div>
                             </div>
+                            
                             <div class="flex flex-row items-center">
-                                <div class="relative"><button aria-label="Bookmark this post"
+                                <div class="relative">
+                                    <button aria-label="Bookmark this post"
                                         data-title="Bookmark"
-                                        class="bookmark-button flex flex-row items-center focus:outline-none p-2 rounded hover:bg-brand-grey-100 dark:hover:bg-brand-dark-grey-700 tooltip-handle  tooltip-left-aligned text-brand-grey-700 dark:text-brand-grey-300 "><svg
-                                            class="w-6 h-6 fill-current" viewBox="0 0 384 512">
+                                        class="bookmark-button flex flex-row items-center focus:outline-none p-2 rounded hover:bg-brand-grey-100 dark:hover:bg-brand-dark-grey-700 tooltip-handle  tooltip-left-aligned text-brand-grey-700 dark:text-brand-grey-300 ">
+                                        <svg class="w-6 h-6 fill-current" viewBox="0 0 384 512">
                                             <path
                                                 d="M336 0H48C21.49 0 0 21.49 0 48v464l192-112 192 112V48c0-26.51-21.49-48-48-48zm16 456.287l-160-93.333-160 93.333V48c0-8.822 7.178-16 16-16h288c8.822 0 16 7.178 16 16v408.287z">
                                             </path>
-                                        </svg></button></div>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
+
                         </div>
                         <div></div>
                     </div>

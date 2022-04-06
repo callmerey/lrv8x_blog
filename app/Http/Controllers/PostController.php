@@ -36,7 +36,7 @@ class PostController extends Controller
         if ($request->has('image_post')) {
             $file = $request->image_post;
             $ext = $request->image_post->extension();
-            $fileName = time() . '-' . 'product' . $ext;
+            $fileName = time() . '-' . 'blog.' . $ext;
             $file->move(public_path('uploads'), $fileName);
         }
 
