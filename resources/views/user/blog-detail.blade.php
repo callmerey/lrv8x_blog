@@ -70,7 +70,7 @@
                         </div>
 
                         
-                        @if(count($comment_data) > 0)
+                        @if($comment_data->count() > 0)
                             @foreach ($comment_data as $cmt)
                             <div class="post-comments">
                                 <div class="media">

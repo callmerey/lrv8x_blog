@@ -15,11 +15,11 @@
                                 fill-rule="nonzero"></path>
                         </svg><span>Thông tin thêm</span></a></div>
                 <p class="mb-2 text-sm italic leading-snug text-brand-grey-600">
-                    {{$desc}}
+                    {{$user->desc}}
                 </p>
             </div>
             <div class="mb-2"><span class="inline-block w-20 text-brand-grey-600">Tham gia:
-                </span><span class="font-medium text-brand-grey-800 dark:text-brand-grey-400">{{$created_at->format('d-m-Y')}}</span></div>
+                </span><span class="font-medium text-brand-grey-800 dark:text-brand-grey-400">{{$user->created_at->format('d-m-Y')}}</span></div>
             <div class="pt-5 mt-5 border-t dark:border-brand-grey-800">
                 <h2 class="mb-2 font-semibold text-brand-grey-700 dark:text-brand-grey-500">
                     I am

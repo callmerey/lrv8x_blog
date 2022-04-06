@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,29 +16,29 @@ class LoginController extends Controller
     }
 
     //login
-    function check(Request $request)
+    function checkLogin(LoginRequest $request)
     {
-
         //validate login
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6|max:12',
-        ]);
-
+        $user_validation = $request ->all();
+        
         // find by email
-        $userInfo = User::where('email', '=', $request->email)->first();
-
+        $userInfo = User::where('email', '=', $user_validation['email'])->first();
 
         if (!$userInfo) {
             return back()->with('fail',' ');
         } else {
-
             //check password
-            if (Hash::check($request->password, $userInfo->password)) {
+            if (Hash::check($user_validation['password'], $userInfo->password)) {
                 $request->session()->put('LoggedUser', $userInfo->id);
-                return redirect('/index');
+
+                if($userInfo->role == 'admin'){
+                    return redirect('admin/dashboard');
+                }else{
+                    return redirect('/index');
+                }
+
             } else {
-                return back()->with('fail',' ');
+                return back()->with('fail',__('messages.fail'));
             }
         }
     }
@@ -51,9 +52,4 @@ class LoginController extends Controller
         }
     }
 
-    function dashboard()
-    {
-        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        return view('admin/dashboard', $data);
-    }
 }
