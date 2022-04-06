@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     function profile(){
 
         $user = User::where('id', '=', session('LoggedUser'))->first();
@@ -18,13 +19,14 @@ class UserController extends Controller
 
         $data = post::join('users', 'users.id', '=', 'posts.user_id')
         ->join('categories', 'categories.cate_id', '=', 'posts.cate_id')
-        ->select('users.id', 'users.image_user','users.image_background', 'users.name', 'posts.name_post', 'posts.title_post', 'posts.created_at', 'categories.cate_name', 'posts.image_post', 'posts.desc')
+        ->select('users.id', 'users.image_user','users.image_background', 'users.name', 'posts.name_post', 'posts.title_post', 'posts.created_at', 'categories.cate_name', 'posts.image_post', 'posts.desc', 'posts.post_id')
         ->where('users.id', '=', $id_user)
         ->get();
 
         return view('user\profile', compact('data','name','id_user','desc','created_at'));
     }
 
+    //get user post
     function userPost($id){
 
         $user = User::where('id', '=', $id)->first();
@@ -40,11 +42,14 @@ class UserController extends Controller
         return view('user\user-post', compact('data','name','image_user'));
     }
 
+    // edit profile
     function editProfile(User $user){
 
         return view('user/edit-profile',compact('user'));
     }
 
+
+    // update data request
     function updateProfile(Request $request, User $user){
 
         if ($request->has('image_user')) {
