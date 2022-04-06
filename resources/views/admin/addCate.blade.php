@@ -6,7 +6,7 @@
             <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Thêm Mới Danh Mục!</h1>
             </div>
-            <form class="user" action="{{route('admin-cate-save')}}" method="POST">
+            <form class="user" action="{{route('category.store')}}" method="POST">
                 @csrf
                 @if (Session::get('fail'))
                 <div class="alert alert-danger">

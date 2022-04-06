@@ -14,24 +14,24 @@ use App\Models\Comment;
 class PostController extends Controller
 {
 
-    function post()
+    public function index()
     {
+        $user = User::where('id', '=', session('LoggedUser'))->first();
         // send model attribute
         $items = Category::get();
-        return view('user\post', compact('items'));
+        return view('user\post', compact('items','user'));
     }
 
 
-    function save_post(PostRequest $request)
+    public function store(PostRequest $request)
     {
         //find id user
         $user = User::where('id', '=', session('LoggedUser'))->first();
 
         //validation request
         $post_validation = $request->all();
-
         // Image post
-        if ($post_validation['image_post']->has('image_post')) {
+        if ($post_validation['image_post']) {
             $file = $post_validation['image_post'];
             $ext = $post_validation['image_post']->extension();
             $fileName = time() . '-' . 'blog.' . $ext;
@@ -56,7 +56,7 @@ class PostController extends Controller
         }
     }
 
-    function editPost(Post $post)
+    public function edit(Post $post)
     {
         $user = User::where('id', '=', session('LoggedUser'))->first();
 
@@ -65,7 +65,7 @@ class PostController extends Controller
     }
 
     // update data request
-    function updatePost(PostRequest $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         //validation request
         $post_validation = $request->all();
@@ -74,13 +74,13 @@ class PostController extends Controller
         $id_user = $data['id'];
 
         // Image post
-        if ($post_validation['image_post']->has('image_post')) {
+        if ($post_validation['image_post'] == null) {
+            $fileImagePost =  $post->image_post;
+        } else {
             $file = $post_validation['image_post'];
             $ext = $post_validation['image_post']->extension();
-            $fileName = time() . '-' . 'blog.' . $ext;
-            $file->move(public_path('uploads'), $fileName);
-        } else {
-            $fileImagePost =  $post->image_post;
+            $fileImagePost = time() . '-' . 'blog.' . $ext;
+            $file->move(public_path('uploads'), $fileImagePost);
         }
 
         $postUpdate = Post::find($post->post_id);
@@ -95,11 +95,11 @@ class PostController extends Controller
             return back()->with('fail', ' ');
         }else{
             $postUpdate->save();
-            return redirect()->route('edit-post', [$postUpdate])->with('msg',__('messages.msg') );
+            return redirect()->route('post.edit', [$postUpdate])->with('msg',__('messages.msg') );
         }
     }
 
-    function deletePost(Post $post)
+    public function destroy(Post $post)
     {
         $post->delete();
 

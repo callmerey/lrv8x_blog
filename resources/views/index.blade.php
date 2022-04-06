@@ -261,22 +261,18 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{URL::to('profile')}}">
+                            <a class="dropdown-item" href="{{route('user.index')}}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
+                                {{__('messages.profile')}}
                             </a>
                             <a class="dropdown-item" >
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
+                                {{__('messages.setting')}}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{URL::to('logout')}}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
+                                {{__('messages.logout')}}
                             </a>
                         </div>
                     </li>
@@ -291,7 +287,7 @@
                             <div class="page-title">
                                 <div class="row">
                                     <div class="col-md-9 col-xs-12">
-                                        <h2><span>Tin Mới Và Những Câu Chuyện</span></h2>
+                                        <h2><span>{{__('messages.title_index')}}</span></h2>
 
                                         <p class="subtitle text-muted">Blog AMEN... tâm sự đời thường - trò chuyện công
                                             nghệ - kĩ thuật lập trình - chém gió trà đá</p>
@@ -318,7 +314,7 @@
                                     <h2 class="post-title"><a href="{{URL::to('blog-detail/'.$post->post_id) }}">{{$post->name_post}}</a></h2>
                                     <ul class="post-meta">
                                         <li><i class="far fa-calendar"></i> {{$post->created_at->format('d-m-Y')}}</li>
-                                        <li><i class="far fa-user"></i> <a href="{{URL::to('user-post/'.$post->id) }}">{{$post->name}}</a></li>
+                                        <li><i class="far fa-user"></i> <a href="{{URL::to('user/'.$post->id)}}">{{$post->name}}</a></li>
                                         <li><i class="far fa-clipboard"></i></i> <a href="#">{{$post->cate_name}}</a>
                                         </li>
                                         <li><i class="far fa-comments"></i></i> <a href="#">3 Comments</a></li>
@@ -334,7 +330,7 @@
                                     {{$post->desc}}
                                 </div>
 
-                                <div><a href="#" class="btn btn-outline-custom" style="border-color:#0db3e3">Đọc Thêm <i
+                                <div><a href="{{URL::to('blog-detail/'.$post->post_id) }}" class="btn btn-outline-custom" style="border-color:#0db3e3">Đọc Thêm <i
                                             class="fas fa-arrow-right"></i></a></div>
 
                             </article>

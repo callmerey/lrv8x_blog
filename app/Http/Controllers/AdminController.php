@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    function dashboard()
+    public function index()
     {
         $user = User::where('id', '=', session('LoggedUser'))->first();
         return view('admin/index',compact('user'));

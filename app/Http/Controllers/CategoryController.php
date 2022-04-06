@@ -9,20 +9,20 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    function getCateAdmin(){
+    public function index(){
 
         $data = Category::get();
         $user = User::where('id', '=', session('LoggedUser'))->first();
         return view('admin/category',compact('data','user'));
     }
 
-    function addCate(){
+    public function create(){
 
         $user = User::where('id', '=', session('LoggedUser'))->first();
         return view('admin/addCate',compact('user'));
     }
 
-    function saveCate(CategoryRequest $request){
+    public function store(CategoryRequest $request){
 
         $cate_validation = $request ->all();
 
@@ -37,23 +37,24 @@ class CategoryController extends Controller
         }
     }
     
-    function editCate(Category $cate){
+    public function edit(Category $category){
         $user = User::where('id', '=', session('LoggedUser'))->first();
-        return view('admin.editCate',compact('cate','user'));
+
+        return view('admin.editCate',compact('category','user'));
     }
 
-    function updateCate(CategoryRequest $request, Category $cate){
+    public function update(CategoryRequest $request, Category $category){
 
         $cate_validation = $request ->all();
 
-        $cateUpdate = Category::find($cate->cate_id);
+        $cateUpdate = Category::find($category->cate_id);
         $cateUpdate->cate_name =  $cate_validation['cate_name'];
 
         if($cateUpdate == null){
             return back()->with('fail',__('messages.fail'));
         }else{
             $cateUpdate->save();
-            return redirect()->route('admin-cate-edit', [$cateUpdate])->with('msg',__('messages.msg') );
+            return redirect()->route('category.edit', [$cateUpdate])->with('msg',__('messages.msg') );
         }
     }
 }
