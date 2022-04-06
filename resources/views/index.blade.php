@@ -261,11 +261,11 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{URL::to('profile')}}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" >
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Settings
                             </a>
@@ -274,9 +274,8 @@
                                 Activity Log
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('auth/logout')}}" data-toggle="modal"
-                                data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <a class="dropdown-item" href="{{URL::to('logout')}}">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
                         </div>
@@ -316,9 +315,9 @@
                             <article class="post">
 
                                 <div class="post-header">
-                                    <h2 class="post-title"><a href="#">{{$post->name_post}}</a></h2>
+                                    <h2 class="post-title"><a href="{{URL::to('blog-detail/'.$post->post_id) }}">{{$post->name_post}}</a></h2>
                                     <ul class="post-meta">
-                                        <li><i class="far fa-calendar"></i> {{$post->created_at}}</li>
+                                        <li><i class="far fa-calendar"></i> {{$post->created_at->format('d-m-Y')}}</li>
                                         <li><i class="far fa-user"></i> <a href="{{URL::to('user-post/'.$post->id) }}">{{$post->name}}</a></li>
                                         <li><i class="far fa-clipboard"></i></i> <a href="#">{{$post->cate_name}}</a>
                                         </li>

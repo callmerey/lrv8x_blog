@@ -12,12 +12,15 @@ class Post extends Model
     protected $primaryKey = 'post_id';
     use HasFactory;
 
-    
     public function user(){
         return  $this->hasOne(User::class, 'post_id','id');
     }
 
     public function cate(){
         return  $this->hasOne(Category::class, 'post_id','cate_id');
+    }
+
+    public function comment(){
+        return  $this->hasMany('App\Models\Comment', 'id','post_id');
     }
 }
